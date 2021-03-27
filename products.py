@@ -28,8 +28,21 @@ class Product:
 
         return products
 
-    def update_product(self):
-        pass
+    def update_product(self, product_id):
+        SQL = f"""
+        UPDATE product
+        SET name = '{self.name}',
+        brand = '{self.brand}',
+        model = '{self.model}',
+        serial_number = '{self.serial_number}'
+        WHERE product_id = '{product_id}'
+        """
+        db.execute(SQL)
 
-    def delete_product(self):
-        pass
+        return True
+
+    def delete_product(self, product_id):
+        SQL = f"DELETE FROM product where product_id = '{product_id}' "
+        db.execute(SQL)
+
+        return True
